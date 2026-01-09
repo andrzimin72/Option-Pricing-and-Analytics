@@ -107,9 +107,9 @@ To Stop Everything
 
 Analysis: Just close the terminal after example_usage.py finishes.
 API:
-If running in foreground: Ctrl + C
-If running via nohup: pkill -f gunicorn
-If using systemd: sudo systemctl stop option-pricer
+If running in foreground: Ctrl + C;
+If running via nohup: pkill -f gunicorn;
+If using systemd: sudo systemctl stop option-pricer.
 
 We’re all set:
 - for analysis: python3 example_usage.py - CSVs;
