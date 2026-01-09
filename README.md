@@ -75,10 +75,7 @@ A. Start Gunicorn (Production Server)
 gunicorn -w 2 -b 127.0.0.1:5000 app:app
 ```
 
-You’ll see: 
-```
-[INFO] Listening at: http://127.0.0.1:5000
-```
+You’ll see: [INFO] Listening at: http://127.0.0.1:5000
 
 B. Test the API
 In another terminal, run:
@@ -125,11 +122,12 @@ Check status:
 sudo systemctl status option-pricer
 ```
 
-To Stop Everything
+## To Stop Everything
 
 Analysis: Just close the terminal after example_usage.py finishes.
 API:
 If running in foreground: Ctrl + C;
+
 If running via nohup: 
 ```
 pkill -f gunicorn
