@@ -67,6 +67,7 @@ python3 example_usage.py
 
 Outputs: bsm_pricing_with_greeks.csv, implied_volatilities.csv
 
+
 3. Start the API (Real-Time Pricing)
 
 A. Start Gunicorn (Production Server)
