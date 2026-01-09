@@ -56,59 +56,52 @@ This is a list of all dependencies. Ensures anyone (or any server) can reproduce
 ## How to Run:
 
 1. Install Dependencies
-bash
-1 pip install -r requirements.txt
+pip install -r requirements.txt
 
 2. Run Analysis (Generates CSVs)
-bash
-1 python3 example_usage.py
+python3 example_usage.py
+
 Outputs: bsm_pricing_with_greeks.csv, implied_volatilities.csv
 
 3. Start the API (Real-Time Pricing)
 
 A. Start Gunicorn (Production Server)
-bash
-1 gunicorn -w 2 -b 127.0.0.1:5000 app:app
+gunicorn -w 2 -b 127.0.0.1:5000 app:app
+
 You’ll see: [INFO] Listening at: http://127.0.0.1:5000
 
 B. Test the API
 In another terminal, run:
 
 Price an option:
-bash
-1 curl -s http://127.0.0.1:5000/price \
-2   -X POST \
-3   -H "Content-Type: application/json" \
-4   -d '{"S":100,"K":110,"T":0.25,"r":0.02,"sigma":0.3,"option_type":"put","model":"bsm"}'
+curl -s http://127.0.0.1:5000/price \
+   -X POST \
+   -H "Content-Type: application/json" \
+   -d '{"S":100,"K":110,"T":0.25,"r":0.02,"sigma":0.3,"option_type":"put","model":"bsm"}'
 
 Get implied volatility:
-bash
-1 curl -s http://127.0.0.1:5000/implied_vol \
-2   -X POST \
-3   -H "Content-Type: application/json" \
-4   -d '{"S":100,"K":110,"T":0.25,"r":0.02,"market_price":12.085444,"option_type":"put"}'
+curl -s http://127.0.0.1:5000/implied_vol \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"S":100,"K":110,"T":0.25,"r":0.02,"market_price":12.085444,"option_type":"put"}'
 
 4: Keep API Running (Optional)
 
 A: Run in Background
-bash
-1 # Stop Gunicorn (Ctrl+C), then:
-2 nohup gunicorn -w 2 -b 127.0.0.1:5000 app:app > api.log 2>&1 &
+#Stop Gunicorn (Ctrl+C), then:
+ nohup gunicorn -w 2 -b 127.0.0.1:5000 app:app > api.log 2>&1 &
 
 B: Auto-Start on Boot (Recommended for servers)
-bash
-1 # Create service file
-2 sudo nano /etc/systemd/system/option-pricer.service
+#Create service file
+sudo nano /etc/systemd/system/option-pricer.service
 
 Then:
-bash
-1 sudo systemctl daemon-reload
-2 sudo systemctl enable option-pricer
-3 sudo systemctl start option-pricer
+sudo systemctl daemon-reload
+sudo systemctl enable option-pricer
+sudo systemctl start option-pricer
 
 Check status:
-bash
-1 sudo systemctl status option-pricer
+sudo systemctl status option-pricer
 
 To Stop Everything
 
