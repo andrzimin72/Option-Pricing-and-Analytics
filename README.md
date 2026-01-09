@@ -17,7 +17,7 @@ This is a batch processing toolkit for research and calibration. Does:
 - price hundreds of options at once (across strikes/maturities);
 - compute Greeks for entire surfaces;
 - calibrate implied volatility smiles/skews from market data;
-- export results to CSV for Excel, Python, or R.
+- export results to CSV for Excel and Python.
 
 Used for:
 - risk analysis;
@@ -66,7 +66,6 @@ python3 example_usage.py
 ```
 
 Outputs: bsm_pricing_with_greeks.csv, implied_volatilities.csv
-
 
 3. Start the API (Real-Time Pricing)
 
