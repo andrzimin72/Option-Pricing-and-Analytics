@@ -56,60 +56,88 @@ This is a list of all dependencies. Ensures anyone (or any server) can reproduce
 ## How to Run:
 
 1. Install Dependencies
+```
 pip install -r requirements.txt
+```
 
 2. Run Analysis (Generates CSVs)
+```
 python3 example_usage.py
+```
 
 Outputs: bsm_pricing_with_greeks.csv, implied_volatilities.csv
 
 3. Start the API (Real-Time Pricing)
 
 A. Start Gunicorn (Production Server)
+```
 gunicorn -w 2 -b 127.0.0.1:5000 app:app
+```
 
-You’ll see: [INFO] Listening at: http://127.0.0.1:5000
+You’ll see: 
+```
+[INFO] Listening at: http://127.0.0.1:5000
+```
 
 B. Test the API
 In another terminal, run:
 
 Price an option:
+```
 curl -s http://127.0.0.1:5000/price \
    -X POST \
    -H "Content-Type: application/json" \
    -d '{"S":100,"K":110,"T":0.25,"r":0.02,"sigma":0.3,"option_type":"put","model":"bsm"}'
+```
 
 Get implied volatility:
+```
 curl -s http://127.0.0.1:5000/implied_vol \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{"S":100,"K":110,"T":0.25,"r":0.02,"market_price":12.085444,"option_type":"put"}'
+```
 
 4: Keep API Running (Optional)
 
 A: Run in Background
+```
 #Stop Gunicorn (Ctrl+C), then:
  nohup gunicorn -w 2 -b 127.0.0.1:5000 app:app > api.log 2>&1 &
+```
 
 B: Auto-Start on Boot (Recommended for servers)
+```
 #Create service file
 sudo nano /etc/systemd/system/option-pricer.service
+```
 
 Then:
+```
 sudo systemctl daemon-reload
 sudo systemctl enable option-pricer
 sudo systemctl start option-pricer
+```
 
 Check status:
+```
 sudo systemctl status option-pricer
+```
 
 To Stop Everything
 
 Analysis: Just close the terminal after example_usage.py finishes.
 API:
 If running in foreground: Ctrl + C;
-If running via nohup: pkill -f gunicorn;
-If using systemd: sudo systemctl stop option-pricer.
+If running via nohup: 
+```
+pkill -f gunicorn
+```
+
+If using systemd: 
+```
+sudo systemctl stop option-pricer
+```
 
 We’re all set:
 - for analysis: python3 example_usage.py - CSVs;
