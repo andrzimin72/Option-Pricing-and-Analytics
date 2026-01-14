@@ -1,8 +1,8 @@
-# Option-Pricing-and-Analytics
+## Option-Pricing-and-Analytics
 
 This is a complete option pricing and analytics platform. Now we have four integrated components that work together:
 
-## 1. pricing_engine.py - the Brain
+### 1. pricing_engine.py - the Brain
 
 This is a library of mathematical models for option pricing. Contains:
 - Black-Scholes-Merton (BSM): Exact European option prices + Greeks;
@@ -11,7 +11,7 @@ This is a library of mathematical models for option pricing. Contains:
 - Binomial & Trinomial Trees: High-accuracy numerical methods for American/Bermudan options.
 This is our core quant engine.
 
-## 2. vectorized.py + example_usage.py - the Analyst
+### 2. vectorized.py + example_usage.py - the Analyst
 
 This is a batch processing toolkit for research and calibration. Does:
 - price hundreds of options at once (across strikes/maturities);
@@ -25,7 +25,7 @@ Used for:
 - volatility surface modeling;
 - academic or proprietary research.
 
-## 3. app.py + Gunicorn - the API Server
+### 3. app.py + Gunicorn - the API Server
 
 This is a real-time pricing microservice. Does:
 - accept JSON requests (e.g., from a trading desk or web app);
@@ -38,7 +38,7 @@ Used for:
 - mobile apps;
 - integration with Excel/Python via HTTP.
 
-## 4. visualize.py - creates separate PNG files for each indicator:
+### 4. visualize.py - creates separate PNG files for each indicator:
 
 - option_price_surface.png - price heatmap;
 - delta_surface.png - Delta (RdBu: blue=long, red=short);
@@ -49,11 +49,11 @@ Used for:
 - volatility_smile.png - IV curve;
 - all_greeks_vs_strike.png - All Greeks on one plot.
 
-## 5. requirements.txt - the Blueprint
+### 5. requirements.txt - the Blueprint
 
 This is a list of all dependencies. Ensures anyone (or any server) can reproduce our environment exactly.
 
-## How to Run:
+### How to Run:
 
 1. Install Dependencies
 ```
@@ -121,7 +121,7 @@ Check status:
 sudo systemctl status option-pricer
 ```
 
-## To Stop Everything
+### How to Stop Everything
 
 Analysis: Just close the terminal after example_usage.py finishes.
 API:
@@ -147,7 +147,7 @@ This is everything we need to run, test, and deploy this system. It’s system i
 - for research - our analysis scripts call the pricing engine, then save to CSV;
 - everything shares the same models - consistent results everywhere.
 
-## Recommendations
+### Recommendations
 
 I think these scripts could be used to:
 - real-time pricing of OTC options via API;
