@@ -1,6 +1,6 @@
 ## Option-Pricing-and-Analytics
 
-This is a complete option pricing and analytics platform. Now we have four integrated components that work together:
+This is a complete option pricing and analytics platform. The platform consists of four integrated components that work together:
 
 ### 1. pricing_engine.py - the Brain
 
